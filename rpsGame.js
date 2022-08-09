@@ -1,4 +1,5 @@
 const gameChoices = ["rock","paper","scissors"];
+const winners = [];
 
 function getComputerChoice(){
     return gameChoices[Math.floor(Math.random()* gameChoices.length)];
@@ -38,6 +39,7 @@ function playRound(){
     const playerSelection = getPlayerChoice();
     const winner = result(playerSelection, computerSelection);
     console.log(winner);
+    winners.push(winner);
 }
 
 function result(choiceP, choiceC){
@@ -54,8 +56,26 @@ function result(choiceP, choiceC){
 
 
 function game(){
+    for (let i = 0; i <= 4; i++){
     playRound();
+
+    }
+    logWins();
+
 }
+
+function logWins(){
+    let playerWins = winners.filter((item) => item == "Player wins").length;
+    let computerWins = winners.filter((item) => item == "Computer wins").length;
+    let ties = winners.filter((item) => item == "Tie").length;
+    console.log("Results: ");
+    console.log("Player Wins: ",playerWins);
+    console.log("Computer wins: ",computerWins);
+    console.log("Ties: ",ties);
+
+}
+
+
 
 game();
 
